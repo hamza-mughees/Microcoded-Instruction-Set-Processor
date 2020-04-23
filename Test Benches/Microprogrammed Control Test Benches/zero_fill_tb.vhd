@@ -14,11 +14,13 @@ architecture dataflow of zero_fill_tb is
 		);
 	end component;
 	
+	-- signal declaration and initialisation
 	signal a : std_logic_vector (2 downto 0);
 	signal z : std_logic_vector (15 downto 0);
 	
 	constant delay : time := 100ns;
 begin
+	-- signals mapped to ports
 	the_filler: zero_fill port map (
 		a => a,
 		z => z
@@ -26,9 +28,9 @@ begin
 	
 	simulation: process
 	begin
-		a <= "010";
+		a <= "010";			-- extented by zeros to 15 bits
 		wait for delay;
-		a <= "100";
+		a <= "100";			-- extended by zeros to 15 bits
 		wait;
 	end process;
 end dataflow;

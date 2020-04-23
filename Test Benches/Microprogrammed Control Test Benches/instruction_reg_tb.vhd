@@ -16,6 +16,7 @@ architecture dataflow of instruction_reg_tb;
 		);
 	end component;
 	
+	-- signal declaration and initialisation
 	signal instruction : std_logic_vector (15 downto 0) := x"ab12";
 	signal il, Clk : std_logic := '0';
 	signal reset : std_logic := '1';
@@ -24,6 +25,7 @@ architecture dataflow of instruction_reg_tb;
 	
 	constant delay : time := 100ns;
 begin
+	-- signals mapped to ports
 	the_reg: instruction_reg port map (
 		instruction => instruction,
 		il => il,
@@ -39,16 +41,19 @@ begin
 	begin
 		wait for delay/2;
 		Clk <= not Clk;
+		-- this will make sure it tests each 
+		-- condition for when Clk is 1 and 
+		-- when its 0
 	end process;
 	
 	simulation: process
 	begin
 		wait for delay;
-		reset <= '0';
+		reset <= '0';		-- reset disabled
 		wait for delay;
-		il <= '1';
+		il <= '1';			-- load enabled (so register loaded with instruction)
 		wait for delay;
-		reset <= '1';
+		reset <= '1';		-- reset enabled
 		wait;
 	end process;
 end dataflow;

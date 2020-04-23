@@ -13,11 +13,13 @@ architecture dataflow of processor_tb is
 		);
 	end component;
 	
+	-- signal declaration and initialisation
 	signal Clk : std_logic := '0';
 	signal reset : std_logic := '1';
 	
 	constant delay : time := 100ns;
 begin
+	-- signals mapped to ports
 	the_processor: processor port map (
 		Clk => Clk,
 		reset => reset
@@ -27,12 +29,15 @@ begin
 	begin
 		wait for delay/2;
 		Clk <= not Clk;
+		-- this will make sure it tests each 
+		-- condition for when Clk is 1 and 
+		-- when its 0
 	end process;
 	
 	simulation: process
 	begin
 		wait for delay;
-		reset <= '0';
+		reset <= '0';		-- reset disabled (runs processor)
 		wait;
 	end process;
 end dataflow;

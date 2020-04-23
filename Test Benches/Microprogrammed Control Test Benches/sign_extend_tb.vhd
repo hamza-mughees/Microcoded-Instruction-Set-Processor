@@ -14,11 +14,13 @@ architecture dataflow of sign_extend_tb is
 		);
 	end component;
 	
+	-- signal declaration and initialisation
 	signal dr_sb : std_logic_vector (5 downto 0);
 	signal z : std_logic_vector (15 downto 0);
 	
 	constant delay : time := 100ns;
 begin
+	-- signals mapped to ports
 	the_extender: sign_extend port map (
 		dr_sb => dr_sb,
 		z => z
@@ -26,12 +28,11 @@ begin
 	
 	simulation: process
 	begin
+		dr_sb <= "010101";		-- msb is '0' -> extension is "00..."
 		wait for delay;
-		dr_sb <= "010101";
+		dr_sb <= "101010";		-- msb is '1' -> extension is "11..."
 		wait for delay;
-		dr_sb <= "101010";
-		wait for delay;
-		dr_sb <= "010011";
+		dr_sb <= "010011";		-- msb is '0' -> extension is "00..."
 		wait;
 	end process;
 end dataflow;

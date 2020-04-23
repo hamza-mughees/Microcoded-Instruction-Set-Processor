@@ -15,6 +15,7 @@ architecture dataflow of pc_tb is
 		);
 	end component;
 	
+	-- signal declaration and initialisation
 	signal pl, pi, Clk : std_logic_vector := '0';
 	signal reset : std_logic := '1';
 	signal disp : std_logic_vector (15 downto 0) := x"0b65";
@@ -22,6 +23,7 @@ architecture dataflow of pc_tb is
 	
 	constant delay : time := 100ns;
 begin
+	-- signals mapped to ports
 	the_pc: pc port map (
 		pl => pl,
 		pi => pi,
@@ -35,20 +37,23 @@ begin
 	begin
 		wait for delay/2;
 		Clk <= not Clk;
+		-- this will make sure it tests each 
+		-- condition for when Clk is 1 and 
+		-- when its 0
 	end process;
 	
 	simulation: process
 	begin
 		wait for delay;
-		reset <= '0';
+		reset <= '0';		-- reset disabled
 		wait for delay;
-		pl <= '1';
+		pl <= '1';			-- load pc with signal
 		wait for delay;
 		pi <= '1';
 		wait for delay;
-		pl <= '0';
+		pl <= '0';			-- increment pc
 		wait for delay;
-		reset <= '1';
+		reset <= '1';		-- reset enabled
 		wait;
 	end process;
 end dataflow;
