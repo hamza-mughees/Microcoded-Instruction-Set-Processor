@@ -46,7 +46,7 @@ begin
 	begin
 		if (reset='1') then
 			state <= x"0000";
-		elsif (Clk='1' and (pl='0' and pi='1') or (pl='1' and pi='0'))
+		elsif ((Clk='1' and (pl='0' and pi='1')) or (pl='1' and pi='0')) then
 			state <= alu_out;
 		else
 			state <= state;

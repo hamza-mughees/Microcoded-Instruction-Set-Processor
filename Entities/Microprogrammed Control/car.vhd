@@ -24,7 +24,7 @@ architecture dataflow of car is
 	signal state : std_logic_vector (7 downto 0);
 	signal carry : std_logic := '0';
 	-- ^ always 0
-	signal add_opcode : std_logic_vector (2 downto 0) := x"001";
+	signal add_opcode : std_logic_vector (11 downto 0) := x"001";
 	-- ^ always add
 	signal alu_in : std_logic_vector (15 downto 0) := x"0101";
 	signal alu_out : std_logic_vector (15 downto 0);

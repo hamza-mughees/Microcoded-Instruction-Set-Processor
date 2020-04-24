@@ -24,10 +24,10 @@ begin
 	
 	process (reset, Clk)
 	begin
-		if (reset='1')
+		if (reset='1') then
 			state <= "0000000000000000";
-		elsif (il='1' and Clk='1')
-			state <= instruction;
+		elsif (il='1' and Clk='1') then
+		  state <= instruction;
 		end if;
 	end process;
 end dataflow;

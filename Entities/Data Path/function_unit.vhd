@@ -32,10 +32,12 @@ architecture dataflow of function_unit is
 		);
 	end component;
 	
-	component mux2to1 is
+	component mux2_16bit is
 		port (
-			s, in0, in1 : in std_logic;
-			out1 : out std_logic
+			s : in std_logic;
+			in0 : in std_logic_vector (15 downto 0);
+			in1 : in std_logic_vector (15 downto 0);
+			z : out std_logic_vector (15 downto 0)
 		);
 	end component;
 	
@@ -61,11 +63,11 @@ begin
 		-- outL and outR irrelevent
 		-- for this implementation
 	);
-	multiplexer: mux2to1 port map (
+	multiplexer: mux2_16bit port map (
 		s => fs(4),
 		in0 => alu_out,
 		in1 => shifter_out,
-		out1 => fu_out
+		z => fu_out
 	);
 	
 	-- Overflow flag

@@ -6,7 +6,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity instruction_reg_tb is
 end instruction_reg_tb;
 
-architecture dataflow of instruction_reg_tb;
+architecture dataflow of instruction_reg_tb is
 	component instruction_reg
 		port (
 			instruction : in std_logic_vector (15 downto 0);

@@ -305,7 +305,7 @@ begin
 			x"0000000",	-- c
 			x"0000000",	-- d
 			x"0000000",	-- e
-			x"0000000",	-- f
+			x"0000000"	-- f
 		);
 	
 		variable addr : integer;
@@ -326,7 +326,7 @@ begin
 		pi <= control_out(14);
 		il <= control_out(15);
 		mc <= control_out(16);
-		ns <= control_out(19 downto 17);
+		ms <= control_out(19 downto 17);
 		na <= control_out(27 downto 20);
 	end process;
 end dataflow;

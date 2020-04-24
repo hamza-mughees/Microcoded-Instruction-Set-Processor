@@ -174,16 +174,17 @@ begin
 			x"0000", x"0000", x"0000", x"0000",
 			x"0000", x"0000", x"0000", x"0000",
 			x"0000", x"0000", x"0000", x"0000",
-			x"0000", x"0000", x"0000", x"0000",
+			x"0000", x"0000", x"0000", x"0000"
 		);
 		
 		variable addr : integer;
-	begin
-		addr := conv_integer(unsigned(address(8 downto 0)));
-		-- ^ least significant 9 bits used to index into array
-		if write_to_mem="1" then
-			data_mem(addr) := data_to_write;
-		else
-			data_to_read <= data_mem(addr) after 5ns;
-	end process;
+        begin
+            addr := conv_integer(unsigned(address(8 downto 0)));
+            -- ^ least significant 9 bits used to index into array
+            if write_to_mem='1' then
+                data_mem(addr) := data_to_write;
+            else
+                data_to_read <= data_mem(addr) after 5ns;
+	        end if;
+    end process;
 end dataflow;
